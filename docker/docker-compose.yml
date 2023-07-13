@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+  redis:
+    image: redislabs/redisearch:latest
+    volumes:
+      - orm_data_redis:/data
+    ports:
+      - "10051:6379"
+
+  redis-test:
+    image: redislabs/redisearch:latest
+    ports:
+      - "10052:6379"
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "10053:3306"
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - MYSQL_ROOT_PASSWORD=9xz3jrd8wf
+      - MYSQL_DATABASE=notification
+    volumes:
+      - orm_data_mysql:/var/lib/mysql
+
+  mysql_test:
+    image: mysql:8.0
+    tmpfs:
+      - /var/lib/mysql
+    ports:
+      - "10054:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=notification_test
+
+  services:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    depends_on:
+      - mysql
+      - redis
+#    ports:
+#      - "10040:80"
+#      - "10041:81"
+#      - "10042:82"
+    volumes:
+      - ..:/go/src/github.com/iliyanm/notification
+
+volumes:
+  orm_data_mysql:
+  orm_data_redis:

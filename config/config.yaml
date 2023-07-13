@@ -1,0 +1,8 @@
+orm:
+  default:
+    mysql: root:9xz3jrd8wf@tcp(mysql:3306)/notification
+    redis: redis:6379:0
+    locker: default
+    local_cache: 1000
+  streams_pool:
+    redis: redis:6379:1
