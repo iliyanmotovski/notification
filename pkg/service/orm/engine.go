@@ -8,6 +8,7 @@ import (
 
 type Engine interface {
 	Flush(entity interface{})
+	NewFlusher() Flusher
 	LoadFromCacheByID(id uint64, entity interface{}, references ...string) bool
 	ExecuteAlters()
 	GetEventBroker() EventBroker
@@ -20,6 +21,10 @@ type beeORMEngine struct {
 
 func (b *beeORMEngine) Flush(entity interface{}) {
 	b.Engine.Flush(entity.(beeorm.Entity))
+}
+
+func (b *beeORMEngine) NewFlusher() Flusher {
+	return &beeORMFlusher{b.Engine.NewFlusher()}
 }
 
 func (b *beeORMEngine) LoadFromCacheByID(id uint64, entity interface{}, references ...string) bool {

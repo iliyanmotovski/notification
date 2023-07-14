@@ -13,8 +13,9 @@ test-cover: ## Run tests with coverage
 test: ## Run tests
 	@go test -race -p 1 ./...
 
-api:
-	./docker/services.sh api
-
 consumer:
 	./docker/services.sh consumer
+
+notification:
+	./docker/services.sh notification
+

@@ -6,3 +6,18 @@ orm:
     local_cache: 1000
   streams_pool:
     redis: redis:6379:1
+
+sms:
+  twilio:
+    sid: sid
+    token: token
+    from_number: from
+
+email:
+  mailjet:
+    api_key_public: public
+    api_key_private: private
+
+slack:
+  bot_tokens:
+    test_bot: token

@@ -18,14 +18,14 @@ const (
 type ConsumerHandler func(ormService Engine, events []beeorm.Event) error
 
 type RunnerBeeORM struct {
-	wg       *sync.WaitGroup
-	mu       *sync.Mutex
+	wg       sync.WaitGroup
+	mu       sync.Mutex
 	ctx      context.Context
 	registry RegistryService
 }
 
 func NewConsumerRunner(ctx context.Context, registry RegistryService) *RunnerBeeORM {
-	return &RunnerBeeORM{wg: &sync.WaitGroup{}, mu: &sync.Mutex{}, ctx: ctx, registry: registry}
+	return &RunnerBeeORM{ctx: ctx, registry: registry}
 }
 
 func (r *RunnerBeeORM) RunConsumerMany(consumerHandler ConsumerHandler, queueName string, prefetchCount int) {
@@ -47,7 +47,7 @@ func (r *RunnerBeeORM) RunConsumerMany(consumerHandler ConsumerHandler, queueNam
 
 		for {
 			// eventsConsumer.Consume should block and not return anything
-			// if it returns true => this consumer is exited with no errors, but still not consuming
+			// if it returns true => this consumer is exited with no errors when we cancel the context
 			// if it returns false => this consumer is exited with error "could not obtain lock", so we should retry
 			if exitedWithNoErrors := eventsConsumer.Consume(r.ctx, currentConsumerIndex, prefetchCount, func(events []beeorm.Event) {
 				log.Printf("%d new dirty events in %s", len(events), queueName)

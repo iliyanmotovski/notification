@@ -3,9 +3,9 @@ package orm
 import (
 	"errors"
 	"fmt"
-	"github.com/iliyanm/notification/pkg/queue"
 
 	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
+	"github.com/iliyanm/notification/pkg/queue"
 	"github.com/iliyanm/notification/pkg/service/config"
 	"github.com/latolukasz/beeorm"
 )
@@ -35,6 +35,12 @@ func NewORMRegistryService(configService config.Config) (RegistryService, func()
 
 	// register entities
 	registry.RegisterEntity(&entitybeeorm.NotificationEntity{})
+	registry.RegisterEntity(&entitybeeorm.SMSNotificationEntity{})
+	registry.RegisterEntity(&entitybeeorm.EmailNotificationEntity{})
+	registry.RegisterEntity(&entitybeeorm.SlackNotificationEntity{})
+
+	// register enums
+	registry.RegisterEnumStruct("entitybeeorm.NotificationStatusAll", entitybeeorm.NotificationStatusAll)
 
 	// register queues (redis streams)
 	// dirty queues - every time entity is flushed, the ORM will push its ID in the queue
@@ -44,18 +50,6 @@ func NewORMRegistryService(configService config.Config) (RegistryService, func()
 		streamsPool,
 		[]string{queue.GetConsumerGroupName(queue.OrmDirtyNotificationEntity)},
 	)
-
-	//orm internal queues
-	//it's important for them to not be created in default redis pool, as every time cache is deleted, the consumer will panic
-
-	//lazy flush - not used in current project, but still needs to be registered
-	registry.RegisterRedisStream(beeorm.LazyChannelName, streamsPool, []string{beeorm.AsyncConsumerGroupName})
-	// logs tables - not used in current project, but still needs to be registered
-	registry.RegisterRedisStream(beeorm.LogChannelName, streamsPool, []string{beeorm.AsyncConsumerGroupName})
-	// redis search indexer - not used in current project, but still needs to be registered
-	registry.RegisterRedisStream(beeorm.RedisSearchIndexerChannelName, streamsPool, []string{beeorm.AsyncConsumerGroupName})
-	//redis streams garbage collector - used
-	registry.RegisterRedisStream(beeorm.RedisStreamGarbageCollectorChannelName, streamsPool, []string{beeorm.AsyncConsumerGroupName})
 
 	validatedRegistry, defferFunc, err := registry.Validate()
 

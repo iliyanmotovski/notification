@@ -5,10 +5,13 @@ import (
 	"log"
 
 	"github.com/iliyanm/notification/pkg/queue"
+	consumerbeeorm "github.com/iliyanm/notification/pkg/queue/consumer/consumer_beeorm"
 	"github.com/iliyanm/notification/pkg/service/config"
+	"github.com/iliyanm/notification/pkg/service/email"
 	gracefulshutdown "github.com/iliyanm/notification/pkg/service/graceful_shutdown"
 	"github.com/iliyanm/notification/pkg/service/orm"
-	"github.com/latolukasz/beeorm"
+	"github.com/iliyanm/notification/pkg/service/slack"
+	"github.com/iliyanm/notification/pkg/service/sms"
 )
 
 func main() {
@@ -19,6 +22,21 @@ func main() {
 	})
 
 	configService, err := config.NewConfigService("consumer", "../../config")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	smsService, err := sms.NewSMSGatewayTwilio(configService)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	emailService, err := email.NewEmailGatewayMailjet(configService)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	slackService, err := slack.NewSlackService(configService)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -35,13 +53,11 @@ func main() {
 
 	consumerRunner := orm.NewConsumerRunner(appContext, ormRegistry)
 
-	consumerRunner.RunConsumerMany(func(ormService orm.Engine, events []beeorm.Event) error {
-		for _, event := range events {
-			log.Println(beeorm.EventDirtyEntity(event).ID())
-		}
-
-		return nil
-	}, queue.OrmDirtyNotificationEntity, 100)
+	consumerRunner.RunConsumerMany(
+		consumerbeeorm.NotificationsDirtyConsumer(smsService, emailService, slackService),
+		queue.OrmDirtyNotificationEntity,
+		100,
+	)
 
 	consumerRunner.Wait()
 }
