@@ -29,7 +29,7 @@ type engine struct {
 }
 
 func (e *engine) SendAsync(notification *Notification) error {
-	if notification.SMS == nil && notification.Email == nil {
+	if notification.SMS == nil && notification.Email == nil && notification.SlackMessage == nil {
 		return errors.New("at least one notification type needs to be sent")
 	}
 

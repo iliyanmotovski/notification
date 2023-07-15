@@ -9,6 +9,7 @@ import (
 
 type Config interface {
 	Get(string) (interface{}, bool)
+	GetString(string) (string, bool)
 }
 
 func NewConfigService(appName, localConfigFolder string) (Config, error) {
@@ -34,4 +35,9 @@ type gookitConfig struct {
 
 func (g *gookitConfig) Get(key string) (interface{}, bool) {
 	return g.Config.Get(key)
+}
+
+func (g *gookitConfig) GetString(key string) (string, bool) {
+	configValue, ok := g.Config.Get(key)
+	return configValue.(string), ok
 }

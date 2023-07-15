@@ -1,23 +1,23 @@
 orm:
   default:
-    mysql: root:9xz3jrd8wf@tcp(mysql:3306)/notification
-    redis: redis:6379:0
-    locker: default
+    mysql: "root:9xz3jrd8wf@tcp(mysql:3306)/notification"
+    redis: "redis:6379:0"
+    locker: "default"
     local_cache: 1000
   streams_pool:
-    redis: redis:6379:1
+    redis: "redis:6379:1"
 
 sms:
   twilio:
-    sid: sid
-    token: token
-    from_number: from
+    sid: "AC2b3f245358aa9194058e52db5455d7a3"
+    token: "c2411990af9598f0b6e8ce98eabd7296"
+    from_number: "+16187654847"
 
 email:
   mailjet:
-    api_key_public: public
-    api_key_private: private
+    api_key_public: 79a479de290b2126b564af20829594d3
+    api_key_private: f37b9ed2244d00dfea27f344f1275784
 
 slack:
   bot_tokens:
-    test_bot: token
+    bot: "xoxb-5570650854423-5582279783845-GEIDMwxZbJaqOFUuaqyJ2Mnc"

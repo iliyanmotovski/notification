@@ -14,25 +14,25 @@ type gatewayTwilio struct {
 }
 
 func NewSMSGatewayTwilio(configService config.Config) (Gateway, error) {
-	sid, ok := configService.Get("sms.twilio.sid")
+	sid, ok := configService.GetString("sms.twilio.sid")
 	if !ok {
 		return nil, fmt.Errorf("sms.twilio.sid missing from config")
 	}
 
-	token, ok := configService.Get("sms.twilio.token")
+	token, ok := configService.GetString("sms.twilio.token")
 	if !ok {
 		return nil, fmt.Errorf("sms.twilio.token missing from config")
 	}
 
-	fromNumber, ok := configService.Get("sms.twilio.from_number")
+	fromNumber, ok := configService.GetString("sms.twilio.from_number")
 	if !ok {
 		return nil, fmt.Errorf("sms.twilio.from_number missing from config")
 	}
 
 	return &gatewayTwilio{
-		sid:        sid.(string),
-		token:      token.(string),
-		fromNumber: fromNumber.(string),
+		sid:        sid,
+		token:      token,
+		fromNumber: fromNumber,
 	}, nil
 }
 

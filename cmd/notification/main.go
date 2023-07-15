@@ -34,18 +34,17 @@ func main() {
 			MobileNumber: "+359878697929",
 		},
 		Email: &notification.Email{
-			From:         "test@gmail.com",
-			FromName:     "test",
-			ReplyTo:      "test@gmail.com",
-			To:           "test_to@gmail.com",
-			Subject:      "subject",
-			TemplateName: "template",
+			From:         "ilqnskiq@abv.bg",
+			FromName:     "iliyan",
+			To:           "iliyan.motovski@gmail.com",
+			Subject:      "test",
+			TemplateName: "4954974",
 			TemplateData: nil,
 		},
 		SlackMessage: &notification.SlackMessage{
-			BotName:     "bot-name",
-			ChannelName: "channel-name",
-			Message:     "message",
+			BotName:     "bot",
+			ChannelName: "bot",
+			Message:     "test message",
 		},
 	}); err != nil {
 		log.Fatal(err)
