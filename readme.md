@@ -68,6 +68,11 @@ slack // if you want to test slack, you need to create an organization and confi
 }
 ```
 
+## Stopping an app
+It's important to stop the consumer and the HTTP server correctly. They expect signal `syscall.SIGINT` or `syscall.SIGTERM`. The easiest way
+to stop an app is to go to the terminal its running and `Ctrl+C`. Don't close a terminal without stopping the application first, as
+this will cause the application to continue running inside the docker container, and you need to restart docker in order to stop it.
+
 ## Testing
 Run the tests: `make test`
 
