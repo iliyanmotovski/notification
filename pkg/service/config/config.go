@@ -12,11 +12,11 @@ type Config interface {
 	GetString(string) (string, bool)
 }
 
-func NewConfigService(appName, localConfigFolder string) (Config, error) {
+func NewConfigService(appName, configFilePath string) (Config, error) {
 	c := config.NewEmpty(appName)
 	c.AddDriver(yaml.Driver)
 
-	yamlFileAppConfig, err := os.ReadFile(localConfigFolder + "/config.yaml")
+	yamlFileAppConfig, err := os.ReadFile(configFilePath)
 	if err != nil {
 		return nil, err
 	}

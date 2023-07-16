@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	configService, err := config.NewConfigService("notification", "../../config")
+	configService, err := config.NewConfigService("notification", "../../config/config.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,6 +25,7 @@ func main() {
 	clockService := clock.NewClockService()
 
 	ormService := ormRegistry.GetORMService()
+	ormService.ExecuteAlters()
 
 	notificationService := notification.NewNotificationService(ormService, clockService)
 

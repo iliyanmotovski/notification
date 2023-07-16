@@ -7,9 +7,10 @@ import (
 	"syscall"
 )
 
+var termChan = make(chan os.Signal, 1)
+
 func GracefulShutdown(callback func()) {
 	go func(callback func()) {
-		termChan := make(chan os.Signal, 1)
 		signal.Notify(termChan, syscall.SIGINT, syscall.SIGTERM)
 
 		<-termChan

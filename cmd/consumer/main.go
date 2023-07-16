@@ -21,7 +21,7 @@ func main() {
 		cancel()
 	})
 
-	configService, err := config.NewConfigService("consumer", "../../config")
+	configService, err := config.NewConfigService("consumer", "../../config/config.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}

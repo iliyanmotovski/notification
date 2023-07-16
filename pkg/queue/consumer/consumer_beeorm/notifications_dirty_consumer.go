@@ -2,23 +2,23 @@ package consumerbeeorm
 
 import (
 	"encoding/json"
+	"fmt"
 
 	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
 	"github.com/iliyanm/notification/pkg/service/email"
 	"github.com/iliyanm/notification/pkg/service/orm"
 	"github.com/iliyanm/notification/pkg/service/slack"
 	"github.com/iliyanm/notification/pkg/service/sms"
-	"github.com/latolukasz/beeorm"
 )
 
 func NotificationsDirtyConsumer(smsService sms.Gateway, emailService email.Gateway, slackService slack.Service) orm.ConsumerHandler {
-	return func(ormService orm.Engine, events []beeorm.Event) error {
-		for _, event := range events {
-			entityID := beeorm.EventDirtyEntity(event).ID()
-
+	return func(ormService orm.Engine, entityIDs []uint64) error {
+		for _, entityID := range entityIDs {
 			notificationEntity := &entitybeeorm.NotificationEntity{}
 
-			ormService.LoadFromCacheByID(entityID, notificationEntity, "SMSNotificationID", "EmailNotificationID", "SlackNotificationID")
+			if !ormService.LoadByID(entityID, notificationEntity, "SMSNotificationID", "EmailNotificationID", "SlackNotificationID") {
+				return fmt.Errorf("notification entity with ID: %d not found", entityID)
+			}
 
 			flusher := ormService.NewFlusher()
 
@@ -49,10 +49,13 @@ func NotificationsDirtyConsumer(smsService sms.Gateway, emailService email.Gatew
 					notificationEntity.SlackNotificationID.Status = entitybeeorm.NotificationStatusInGateway.String()
 					flusher.Track(notificationEntity.SlackNotificationID)
 				}
-
 			}
 
-			flusher.Flush()
+			flush := sendSMS || sendEmail || sendToSlack
+
+			if flush {
+				flusher.Flush()
+			}
 
 			if sendSMS {
 				doSendSMS(smsService, notificationEntity.SMSNotificationID)
@@ -72,7 +75,9 @@ func NotificationsDirtyConsumer(smsService sms.Gateway, emailService email.Gatew
 				flusher.Track(notificationEntity.SlackNotificationID)
 			}
 
-			flusher.Flush()
+			if flush {
+				flusher.Flush()
+			}
 		}
 
 		return nil
@@ -103,15 +108,15 @@ func doSendEmail(emailService email.Gateway, emailNotificationEntity *entitybeeo
 		TemplateName: emailNotificationEntity.TemplateName,
 	}
 
-	templateData := map[string]interface{}{}
+	var templateData map[string]interface{}
 
 	if len(emailNotificationEntity.TemplateData) > 0 {
 		if err := json.Unmarshal(emailNotificationEntity.TemplateData, &templateData); err != nil {
 			return err
 		}
-	}
 
-	emailMessage.TemplateData = templateData
+		emailMessage.TemplateData = templateData
+	}
 
 	err := emailService.SendTemplate(emailMessage)
 	if err != nil {

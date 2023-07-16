@@ -15,7 +15,7 @@ const (
 	obtainLockRetryDuration = time.Second
 )
 
-type ConsumerHandler func(ormService Engine, events []beeorm.Event) error
+type ConsumerHandler func(ormService Engine, entityIDs []uint64) error
 
 type RunnerBeeORM struct {
 	wg       sync.WaitGroup
@@ -37,7 +37,7 @@ func (r *RunnerBeeORM) RunConsumerMany(consumerHandler ConsumerHandler, queueNam
 		ormService := r.registry.GetORMService()
 		eventsConsumer := ormService.GetEventBroker().GetEventsConsumer(consumerGroupName)
 
-		cacheService := ormService.GetCacheService(streamsPool)
+		cacheService := ormService.GetCacheService(StreamsPool)
 
 		r.mu.Lock()
 		currentConsumerIndex := addConsumerGroup(cacheService, consumerGroupName)
@@ -52,7 +52,14 @@ func (r *RunnerBeeORM) RunConsumerMany(consumerHandler ConsumerHandler, queueNam
 			if exitedWithNoErrors := eventsConsumer.Consume(r.ctx, currentConsumerIndex, prefetchCount, func(events []beeorm.Event) {
 				log.Printf("%d new dirty events in %s", len(events), queueName)
 
-				if err := consumerHandler(ormService, events); err != nil {
+				entityIDs := make([]uint64, len(events))
+
+				for i, event := range events {
+					entityID := beeorm.EventDirtyEntity(event).ID()
+					entityIDs[i] = entityID
+				}
+
+				if err := consumerHandler(ormService, entityIDs); err != nil {
 					r.mu.Lock()
 					removeConsumerGroup(cacheService, consumerGroupName, currentConsumerIndex)
 					r.mu.Unlock()

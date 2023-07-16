@@ -1,0 +1,8 @@
+orm:
+  default:
+    mysql: "root:9xz3jrd8wf@tcp(localhost:10064)/notification_test"
+    redis: "localhost:10062:0"
+    locker: "default"
+    local_cache: 1000
+  streams_pool:
+    redis: "localhost:10062:1"

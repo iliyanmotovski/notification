@@ -5,6 +5,7 @@ import "github.com/latolukasz/beeorm"
 type CacheService interface {
 	Set(key string, values ...interface{})
 	Get(key, field string) (string, bool)
+	Clear()
 }
 
 type redisCache struct {
@@ -17,4 +18,8 @@ func (r *redisCache) Set(key string, values ...interface{}) {
 
 func (r *redisCache) Get(key, field string) (string, bool) {
 	return r.RedisCache.HGet(key, field)
+}
+
+func (r *redisCache) Clear() {
+	r.RedisCache.FlushDB()
 }

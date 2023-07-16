@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	streamsPool = "streams_pool"
+	StreamsPool = "streams_pool"
 )
 
 type RegistryService interface {
@@ -47,7 +47,7 @@ func NewORMRegistryService(configService config.Config) (RegistryService, func()
 
 	registry.RegisterRedisStream(
 		queue.OrmDirtyNotificationEntity,
-		streamsPool,
+		StreamsPool,
 		[]string{queue.GetConsumerGroupName(queue.OrmDirtyNotificationEntity)},
 	)
 
