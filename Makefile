@@ -9,9 +9,10 @@ format-check: ## Format the code and run linters
 test-cover: ## Run tests with coverage
 	@go install github.com/ory/go-acc@latest
 	@go-acc ./... --output=coverage.out --covermode=atomic -- -race -p 1
+	@rm -rf coverage.out
 
 test: ## Run tests
-	@go test -race -p 1 ./...
+	@go test -race -v -p 1 ./...
 
 generate-notification-api-doc:
 	@go mod vendor
@@ -24,4 +25,3 @@ consumer:
 
 notification-api:
 	./docker/services.sh notification-api
-

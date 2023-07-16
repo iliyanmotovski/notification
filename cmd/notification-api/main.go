@@ -39,6 +39,9 @@ func main() {
 
 	defer deferFunc()
 
+	ormService := ormRegistry.GetORMService()
+	ormService.ExecuteAlters()
+
 	clockService := clock.NewClockService()
 
 	server.StartGinHTTPServer(

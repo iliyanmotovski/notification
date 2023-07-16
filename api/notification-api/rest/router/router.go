@@ -13,7 +13,7 @@ import (
 
 func Init(ormRegistry orm.RegistryService, clockService clock.IClock) server.GinInitHandler {
 	return func(ginEngine *gin.Engine) {
-		ginEngine.GET("/doc/", doc.GetAPIDoc(constant.AppNameNotificationAPI))
+		ginEngine.GET("/doc", doc.GetAPIDoc(constant.AppNameNotificationAPI))
 		ginEngine.Static("static", "../../static")
 
 		v1Router := ginEngine.Group("/v1")
