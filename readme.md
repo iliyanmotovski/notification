@@ -1,5 +1,10 @@
 # Notification service
 
+## System diagram  
+![alt text](https://github.com/iliyanm/notification/blob/master/notification_service.png?raw=true)
+
+## The service exposes HTTP Rest server
+
 ```json
 {
   "email": {
