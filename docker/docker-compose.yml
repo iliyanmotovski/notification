@@ -41,6 +41,8 @@ services:
     depends_on:
       - mysql
       - redis
+    ports:
+      - "8080:8080"
     volumes:
       - ..:/go/src/github.com/iliyanm/notification
 

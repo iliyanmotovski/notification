@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 
+	"github.com/iliyanm/notification/pkg/constant"
 	"github.com/iliyanm/notification/pkg/queue"
 	consumerbeeorm "github.com/iliyanm/notification/pkg/queue/consumer/consumer_beeorm"
 	"github.com/iliyanm/notification/pkg/service/config"
@@ -21,7 +22,7 @@ func main() {
 		cancel()
 	})
 
-	configService, err := config.NewConfigService("consumer", "../../config/config.yaml")
+	configService, err := config.NewConfigService(constant.AppNameConsumer, "../../config/config.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}

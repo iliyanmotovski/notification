@@ -13,9 +13,15 @@ test-cover: ## Run tests with coverage
 test: ## Run tests
 	@go test -race -p 1 ./...
 
+generate-notification-api-doc:
+	@go mod vendor
+	@go install github.com/swaggo/swag/cmd/swag@v1.8.4
+	@swag init -g ./cmd/notification-api/main.go -o ./static/docs/notification -p pascalcase --parseVendor --parseInternal
+	@rm -R vendor
+
 consumer:
 	./docker/services.sh consumer
 
-notification:
-	./docker/services.sh notification
+notification-api:
+	./docker/services.sh notification-api
 

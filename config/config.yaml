@@ -21,3 +21,6 @@ email:
 slack:
   bot_tokens:
     bot: "xoxb-5570650854423-5582279783845-GEIDMwxZbJaqOFUuaqyJ2Mnc"
+
+server:
+  port: "8080"

@@ -1,0 +1,107 @@
+basePath: /v1
+definitions:
+  dto.RequestDTOEmail:
+    properties:
+      from:
+        type: string
+      from_name:
+        type: string
+      reply_to:
+        type: string
+      subject:
+        type: string
+      template_data:
+        items:
+          $ref: '#/definitions/dto.RequestDTOTemplateDate'
+        type: array
+      template_name:
+        type: string
+      to:
+        type: string
+    required:
+    - from
+    - from_name
+    - subject
+    - template_name
+    - to
+    type: object
+  dto.RequestDTONotification:
+    properties:
+      email:
+        $ref: '#/definitions/dto.RequestDTOEmail'
+      slack_message:
+        $ref: '#/definitions/dto.RequestDTOSlackMessage'
+      sms:
+        $ref: '#/definitions/dto.RequestDTOSMS'
+    type: object
+  dto.RequestDTOSMS:
+    properties:
+      mobile_number:
+        type: string
+      text:
+        type: string
+    required:
+    - mobile_number
+    - text
+    type: object
+  dto.RequestDTOSlackMessage:
+    properties:
+      bot_name:
+        type: string
+      channel_name:
+        type: string
+      message:
+        type: string
+    required:
+    - bot_name
+    - channel_name
+    - message
+    type: object
+  dto.RequestDTOTemplateDate:
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+    required:
+    - key
+    - value
+    type: object
+  server.Error:
+    properties:
+      fields_error:
+        additionalProperties:
+          type: string
+        type: object
+      global_error:
+        type: string
+    type: object
+info:
+  contact:
+    email: iliyan.motovski@gmail.com
+    name: Iliyan Motovski
+  title: NOTIFICATION API
+  version: "1.0"
+paths:
+  /notification/send-async:
+    post:
+      description: Send notification async
+      parameters:
+      - description: Request in body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RequestDTONotification'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/server.Error'
+        "500":
+          description: Internal Server Error
+      tags:
+      - Notification
+swagger: "2.0"
