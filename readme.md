@@ -72,3 +72,9 @@ slack // if you want to test slack, you need to create an organization and confi
 Run the tests: `make test`
 
 Run the tests with coverage: `make test-cover`
+
+## Linter and formatting
+Run `make format-check`
+
+## Regenerating swagger (every time you change an API)
+Run `make generate-notification-api-doc`
