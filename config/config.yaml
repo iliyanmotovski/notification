@@ -9,18 +9,18 @@ orm:
 
 sms:
   twilio:
-    sid: "AC2b3f245358aa9194058e52db5455d7a3"
-    token: "c2411990af9598f0b6e8ce98eabd7296"
-    from_number: "+16187654847"
+    sid: "sid"
+    token: "token"
+    from_number: "+123456789"
 
 email:
   mailjet:
-    api_key_public: 79a479de290b2126b564af20829594d3
-    api_key_private: f37b9ed2244d00dfea27f344f1275784
+    api_key_public: "api_key_public"
+    api_key_private: "api_key_private"
 
 slack:
   bot_tokens:
-    bot: "xoxb-5570650854423-5582279783845-GEIDMwxZbJaqOFUuaqyJ2Mnc"
+    bot: "bot_token"
 
 server:
   port: "8080"

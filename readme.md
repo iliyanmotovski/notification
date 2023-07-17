@@ -11,8 +11,7 @@ Channels implemented:
 2. Email (implemented Mailjet)
 3. Slack
 
-The service is easily extensible and adding new channels is easy. Implementing new providers (gateways) to the
-existing channels is easy too. 
+The service is open for extensibility, and adding a new channel is a straightforward process, as well as adding implementations of providers (gateways).
 
 The service is built on top of BeeORM, MySQL, Redis and Redis Streams.
 It guarantees `at-least-once` delivery due to the nature of [Redis Streams](https://redis.com/solutions/use-cases/messaging/) - search for `at-least-once`.
@@ -39,32 +38,38 @@ The service config file path is: `./config/config.yaml`
 
 #### Request body
 
-Fields not to be changed if you want the example to work:
 ```
-email.from // don't change, as mailjet is configured to send from this email address
-email.template_name // don't change, as this is mailjet template id that I use for test
+sms   // if you want to test sms, you need to create account in twilio and put the api keys in the config file
+email // if you want to test email, you need to create account in mailjet nad put the api keys in the config file
+slack // if you want to test slack, you need to create an organization and configure a bot, then put the boy key in the config file
+```
 
-slack // if you want to test slack, you need to create an organization and configure a bot
-```
 #### JSON
 ```json
 {
-  "email": {
-    "from": "ilqnskiq@abv.bg",
-    "from_name": "iliyan",
-    "subject": "test",
-    "template_name": "4954974",
-    "to": "iliyan.motovski@gmail.com"
-  },
-  "slack_message": {
-    "bot_name": "bot",
-    "channel_name": "bot",
-    "message": "test message"
-  },
-  "sms": {
-    "mobile_number": "+359878697929",
-    "text": "test"
-  }
+   "email": {
+      "from": "string",
+      "from_name": "string",
+      "reply_to": "string",
+      "subject": "string",
+      "template_data": [
+         {
+            "key": "string",
+            "value": "string"
+         }
+      ],
+      "template_name": "string",
+      "to": "string"
+   },
+   "slack_message": {
+      "bot_name": "string",
+      "channel_name": "string",
+      "message": "string"
+   },
+   "sms": {
+      "mobile_number": "string",
+      "text": "string"
+   }
 }
 ```
 
