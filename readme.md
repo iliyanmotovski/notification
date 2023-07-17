@@ -1,5 +1,8 @@
 # Notification service
 
+[![codecov.io](https://codecov.io/github/iliyanmotovski/notification/coverage.svg?branch=master)]
+(https://codecov.io/github/iliyanmotovski/notification?branch=master)
+
 ## System diagram
 ![alt text](https://github.com/iliyanmotovski/notification/blob/master/notification_service.png?raw=true)
 
