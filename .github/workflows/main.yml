@@ -42,7 +42,7 @@ jobs:
         run: |
           sudo bash -c 'echo -e "[mysqld]\nport=10064\n" >> /etc/mysql/my.cnf'
           sudo systemctl start mysql.service
-          mysql -e 'CREATE DATABASE notification_test;' -uroot -p9xz3jrd8wf
+          mysql -e 'CREATE DATABASE notification_test;' -u root -p root
 
       - name: Run tests with coverage
         run: |

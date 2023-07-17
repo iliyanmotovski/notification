@@ -31,7 +31,7 @@ services:
     ports:
       - "10064:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=9xz3jrd8wf
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=notification_test
 
   services:
