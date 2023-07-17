@@ -1,0 +1,39 @@
+name: docs
+
+on:
+  # trigger deployment on every push to main branch
+  push:
+    branches: [master]
+  # trigger deployment manually
+  workflow_dispatch:
+
+jobs:
+  docs:
+    name: Generate Swagger documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Docs Generator
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          go get -u github.com/swaggo/swag/cmd/swag
+          go install github.com/swaggo/swag/cmd/swag@latest
+          make generate-admin-api-doc
+
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Add changes" -a || echo "No changes to commit"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

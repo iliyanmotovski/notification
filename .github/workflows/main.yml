@@ -1,0 +1,54 @@
+name: checks & tests
+
+on: push
+
+jobs:
+  checks:
+    name: Quality & Security checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: 'go.mod'
+
+      - name: Run Linters
+        uses: golangci/golangci-lint-action@v3.4.0
+        with:
+          version: v1.52.0
+          args: --verbose --fix
+  tests:
+    name: Tests with coverage
+    runs-on: ubuntu-latest
+    needs: checks
+    services:
+      redis-test:
+        image: redislabs/redisearch:2.6.11
+        ports:
+          - 10062:6379
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure MySQL & Create databases
+        run: |
+          sudo bash -c 'echo -e "[mysqld]\nport=10064\n" >> /etc/mysql/my.cnf'
+          sudo systemctl start mysql.service
+          mysql -e 'CREATE DATABASE notification_test;' -uroot -proot
+
+      - name: Run tests with coverage
+        run: |
+          make test-cover
+
+      - name: Upload report to codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
