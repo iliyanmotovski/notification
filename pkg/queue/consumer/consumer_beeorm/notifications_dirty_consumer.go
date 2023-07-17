@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
-	"github.com/iliyanm/notification/pkg/service/email"
-	"github.com/iliyanm/notification/pkg/service/orm"
-	"github.com/iliyanm/notification/pkg/service/slack"
-	"github.com/iliyanm/notification/pkg/service/sms"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
+	"github.com/iliyanmotovski/notification/pkg/service/email"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
+	"github.com/iliyanmotovski/notification/pkg/service/slack"
+	"github.com/iliyanmotovski/notification/pkg/service/sms"
 )
 
 func NotificationsDirtyConsumer(smsService sms.Gateway, emailService email.Gateway, slackService slack.Service) orm.ConsumerHandler {

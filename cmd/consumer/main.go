@@ -4,15 +4,15 @@ import (
 	"context"
 	"log"
 
-	"github.com/iliyanm/notification/pkg/constant"
-	"github.com/iliyanm/notification/pkg/queue"
-	consumerbeeorm "github.com/iliyanm/notification/pkg/queue/consumer/consumer_beeorm"
-	"github.com/iliyanm/notification/pkg/service/config"
-	"github.com/iliyanm/notification/pkg/service/email"
-	gracefulshutdown "github.com/iliyanm/notification/pkg/service/graceful_shutdown"
-	"github.com/iliyanm/notification/pkg/service/orm"
-	"github.com/iliyanm/notification/pkg/service/slack"
-	"github.com/iliyanm/notification/pkg/service/sms"
+	"github.com/iliyanmotovski/notification/pkg/constant"
+	"github.com/iliyanmotovski/notification/pkg/queue"
+	consumerbeeorm "github.com/iliyanmotovski/notification/pkg/queue/consumer/consumer_beeorm"
+	"github.com/iliyanmotovski/notification/pkg/service/config"
+	"github.com/iliyanmotovski/notification/pkg/service/email"
+	gracefulshutdown "github.com/iliyanmotovski/notification/pkg/service/graceful_shutdown"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
+	"github.com/iliyanmotovski/notification/pkg/service/slack"
+	"github.com/iliyanmotovski/notification/pkg/service/sms"
 )
 
 func main() {

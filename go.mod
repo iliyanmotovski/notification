@@ -1,4 +1,4 @@
-module github.com/iliyanm/notification
+module github.com/iliyanmotovski/notification
 
 go 1.20
 

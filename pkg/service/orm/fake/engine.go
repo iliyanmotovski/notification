@@ -1,8 +1,8 @@
 package fake
 
 import (
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
-	"github.com/iliyanm/notification/pkg/service/orm"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
 	"github.com/stretchr/testify/mock"
 )
 

@@ -1,8 +1,8 @@
 package notification
 
 import (
-	"github.com/iliyanm/notification/api/notification-api/rest/dto"
-	"github.com/iliyanm/notification/pkg/service/notification"
+	"github.com/iliyanmotovski/notification/api/notification-api/rest/dto"
+	"github.com/iliyanmotovski/notification/pkg/service/notification"
 )
 
 func SendNotificationAsync(notificationService notification.Engine, requestDTO *dto.RequestDTONotification) error {

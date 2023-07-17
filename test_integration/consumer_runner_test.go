@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
-	"github.com/iliyanm/notification/pkg/queue"
-	"github.com/iliyanm/notification/pkg/service/orm"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
+	"github.com/iliyanmotovski/notification/pkg/queue"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,7 +1,7 @@
 package fake
 
 import (
-	"github.com/iliyanm/notification/pkg/service/slack"
+	"github.com/iliyanmotovski/notification/pkg/service/slack"
 	"github.com/stretchr/testify/mock"
 )
 

@@ -2,13 +2,13 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/iliyanm/notification/api/notification-api/rest/controller"
-	"github.com/iliyanm/notification/pkg/constant"
-	"github.com/iliyanm/notification/pkg/domain/view/doc"
-	"github.com/iliyanm/notification/pkg/middleware"
-	"github.com/iliyanm/notification/pkg/service/clock"
-	"github.com/iliyanm/notification/pkg/service/orm"
-	"github.com/iliyanm/notification/pkg/service/server"
+	"github.com/iliyanmotovski/notification/api/notification-api/rest/controller"
+	"github.com/iliyanmotovski/notification/pkg/constant"
+	"github.com/iliyanmotovski/notification/pkg/domain/view/doc"
+	"github.com/iliyanmotovski/notification/pkg/middleware"
+	"github.com/iliyanmotovski/notification/pkg/service/clock"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
+	"github.com/iliyanmotovski/notification/pkg/service/server"
 )
 
 func Init(ormRegistry orm.RegistryService, clockService clock.IClock) server.GinInitHandler {

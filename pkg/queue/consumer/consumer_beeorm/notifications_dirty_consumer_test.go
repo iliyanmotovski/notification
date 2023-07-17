@@ -5,14 +5,14 @@ import (
 	"testing"
 	"time"
 
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
-	"github.com/iliyanm/notification/pkg/service/email"
-	fakeEmail "github.com/iliyanm/notification/pkg/service/email/fake"
-	fakeORM "github.com/iliyanm/notification/pkg/service/orm/fake"
-	"github.com/iliyanm/notification/pkg/service/slack"
-	fakeSlack "github.com/iliyanm/notification/pkg/service/slack/fake"
-	"github.com/iliyanm/notification/pkg/service/sms"
-	fakeSMS "github.com/iliyanm/notification/pkg/service/sms/fake"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
+	"github.com/iliyanmotovski/notification/pkg/service/email"
+	fakeEmail "github.com/iliyanmotovski/notification/pkg/service/email/fake"
+	fakeORM "github.com/iliyanmotovski/notification/pkg/service/orm/fake"
+	"github.com/iliyanmotovski/notification/pkg/service/slack"
+	fakeSlack "github.com/iliyanmotovski/notification/pkg/service/slack/fake"
+	"github.com/iliyanmotovski/notification/pkg/service/sms"
+	fakeSMS "github.com/iliyanmotovski/notification/pkg/service/sms/fake"
 	"github.com/stretchr/testify/assert"
 )
 

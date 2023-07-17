@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
-	fakeClock "github.com/iliyanm/notification/pkg/service/clock/fake"
-	fakeORM "github.com/iliyanm/notification/pkg/service/orm/fake"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
+	fakeClock "github.com/iliyanmotovski/notification/pkg/service/clock/fake"
+	fakeORM "github.com/iliyanmotovski/notification/pkg/service/orm/fake"
 	"github.com/stretchr/testify/assert"
 )
 

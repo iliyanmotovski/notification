@@ -9,10 +9,10 @@ import (
 	"net/http/httptest"
 
 	"github.com/gin-gonic/gin"
-	"github.com/iliyanm/notification/api/notification-api/rest/router"
-	"github.com/iliyanm/notification/pkg/service/clock"
-	"github.com/iliyanm/notification/pkg/service/config"
-	"github.com/iliyanm/notification/pkg/service/orm"
+	"github.com/iliyanmotovski/notification/api/notification-api/rest/router"
+	"github.com/iliyanmotovski/notification/pkg/service/clock"
+	"github.com/iliyanmotovski/notification/pkg/service/config"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
 )
 
 var ormService orm.Engine

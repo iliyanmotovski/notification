@@ -4,11 +4,11 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/iliyanm/notification/api/notification-api/rest/dto"
-	"github.com/iliyanm/notification/pkg/constant"
-	notificationModel "github.com/iliyanm/notification/pkg/domain/model/notification"
-	"github.com/iliyanm/notification/pkg/service/notification"
-	"github.com/iliyanm/notification/pkg/service/server"
+	"github.com/iliyanmotovski/notification/api/notification-api/rest/dto"
+	"github.com/iliyanmotovski/notification/pkg/constant"
+	notificationModel "github.com/iliyanmotovski/notification/pkg/domain/model/notification"
+	"github.com/iliyanmotovski/notification/pkg/service/notification"
+	"github.com/iliyanmotovski/notification/pkg/service/server"
 )
 
 type NotificationController struct {

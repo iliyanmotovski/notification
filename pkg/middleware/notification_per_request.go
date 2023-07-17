@@ -2,10 +2,10 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/iliyanm/notification/pkg/constant"
-	"github.com/iliyanm/notification/pkg/service/clock"
-	"github.com/iliyanm/notification/pkg/service/notification"
-	"github.com/iliyanm/notification/pkg/service/orm"
+	"github.com/iliyanmotovski/notification/pkg/constant"
+	"github.com/iliyanmotovski/notification/pkg/service/clock"
+	"github.com/iliyanmotovski/notification/pkg/service/notification"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
 )
 
 func NotificationServicePerRequestMiddleware(clockService clock.IClock) gin.HandlerFunc {

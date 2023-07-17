@@ -4,9 +4,9 @@ import (
 	"errors"
 	"fmt"
 
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
-	"github.com/iliyanm/notification/pkg/queue"
-	"github.com/iliyanm/notification/pkg/service/config"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
+	"github.com/iliyanmotovski/notification/pkg/queue"
+	"github.com/iliyanmotovski/notification/pkg/service/config"
 	"github.com/latolukasz/beeorm"
 )
 

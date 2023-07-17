@@ -3,7 +3,7 @@ package slack
 import (
 	"fmt"
 
-	"github.com/iliyanm/notification/pkg/service/config"
+	"github.com/iliyanmotovski/notification/pkg/service/config"
 	"github.com/slack-go/slack"
 )
 

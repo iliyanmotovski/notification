@@ -3,7 +3,7 @@ package fake
 import (
 	"encoding/json"
 
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
 	"github.com/stretchr/testify/mock"
 )
 

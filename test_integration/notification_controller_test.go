@@ -6,11 +6,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/iliyanm/notification/api/notification-api/rest/dto"
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
-	"github.com/iliyanm/notification/pkg/queue"
-	"github.com/iliyanm/notification/pkg/service/clock/fake"
-	"github.com/iliyanm/notification/pkg/service/orm"
+	"github.com/iliyanmotovski/notification/api/notification-api/rest/dto"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
+	"github.com/iliyanmotovski/notification/pkg/queue"
+	"github.com/iliyanmotovski/notification/pkg/service/clock/fake"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
 	"github.com/stretchr/testify/assert"
 )
 

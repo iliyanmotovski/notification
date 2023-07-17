@@ -44,7 +44,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ..:/go/src/github.com/iliyanm/notification
+      - ..:/go/src/github.com/iliyanmotovski/notification
 
 volumes:
   orm_data_mysql:

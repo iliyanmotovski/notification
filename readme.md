@@ -1,7 +1,7 @@
 # Notification service
 
 ## System diagram
-![alt text](https://github.com/iliyanm/notification/blob/master/notification_service.png?raw=true)
+![alt text](https://github.com/iliyanmotovski/notification/blob/master/notification_service.png?raw=true)
 
 ## Description
 Notification service allows you to send notifications to different channels.

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/iliyanm/notification/pkg/queue"
+	"github.com/iliyanmotovski/notification/pkg/queue"
 	"github.com/latolukasz/beeorm"
 )
 

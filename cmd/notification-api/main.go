@@ -4,13 +4,13 @@ import (
 	"context"
 	"log"
 
-	"github.com/iliyanm/notification/api/notification-api/rest/router"
-	"github.com/iliyanm/notification/pkg/constant"
-	"github.com/iliyanm/notification/pkg/service/clock"
-	"github.com/iliyanm/notification/pkg/service/config"
-	gracefulshutdown "github.com/iliyanm/notification/pkg/service/graceful_shutdown"
-	"github.com/iliyanm/notification/pkg/service/orm"
-	"github.com/iliyanm/notification/pkg/service/server"
+	"github.com/iliyanmotovski/notification/api/notification-api/rest/router"
+	"github.com/iliyanmotovski/notification/pkg/constant"
+	"github.com/iliyanmotovski/notification/pkg/service/clock"
+	"github.com/iliyanmotovski/notification/pkg/service/config"
+	gracefulshutdown "github.com/iliyanmotovski/notification/pkg/service/graceful_shutdown"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
+	"github.com/iliyanmotovski/notification/pkg/service/server"
 )
 
 // @title NOTIFICATION API

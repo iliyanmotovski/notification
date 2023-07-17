@@ -3,7 +3,7 @@ package sms
 import (
 	"fmt"
 
-	"github.com/iliyanm/notification/pkg/service/config"
+	"github.com/iliyanmotovski/notification/pkg/service/config"
 	"github.com/kevinburke/twilio-go"
 )
 

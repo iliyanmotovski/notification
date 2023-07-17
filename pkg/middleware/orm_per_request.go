@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/iliyanm/notification/pkg/constant"
-	"github.com/iliyanm/notification/pkg/service/orm"
+	"github.com/iliyanmotovski/notification/pkg/constant"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
 )
 
 func ORMPerRequestMiddleware(ormRegistry orm.RegistryService) gin.HandlerFunc {

@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 
-	entitybeeorm "github.com/iliyanm/notification/pkg/entity/entity_beeorm"
-	"github.com/iliyanm/notification/pkg/service/clock"
-	"github.com/iliyanm/notification/pkg/service/orm"
+	entitybeeorm "github.com/iliyanmotovski/notification/pkg/entity/entity_beeorm"
+	"github.com/iliyanmotovski/notification/pkg/service/clock"
+	"github.com/iliyanmotovski/notification/pkg/service/orm"
 )
 
 type Engine interface {
